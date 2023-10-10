@@ -2,12 +2,16 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
 export const HeaderContainer = styled.nav`
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   padding: 7px;
   background-color: ${props => props.bgColor};
   color: ${props => props.color};
-  margin-bottom: 0;
+  margin-bottom: 35px;
 `
 export const LogoImage = styled.img`
   width: 120px;

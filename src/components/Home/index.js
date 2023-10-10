@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import Loader from 'react-loader-spinner'
 
 import {AiOutlineSearch} from 'react-icons/ai'
 
@@ -7,6 +8,8 @@ import Header from '../Header'
 import Banner from '../Banner'
 import ThemeAndVideoContext from '../context/ThemeAndVideoContext'
 import HomeVideos from '../HomeVideos'
+import FailureView from '../Failureview'
+import NavigationBar from '../NavigationBar'
 
 import {
   HomeBgContainer,
@@ -19,6 +22,7 @@ import {
   NoVideosHeading,
   NoVideosImage,
   NoVideosView,
+  LoadingContainer,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -107,9 +111,13 @@ class Home extends Component {
     )
   }
 
-  renderFailureView = () => <h1>Api Status Failed</h1>
+  renderFailureView = () => <FailureView onRetry={this.onRetry} />
 
-  renderLoadingView = () => <h1>Loading...</h1>
+  renderLoadingView = () => (
+    <LoadingContainer data-testid="loader">
+      <Loader type="ThreeDots" color="#4f46e5" height="50" width="50" />
+    </LoadingContainer>
+  )
 
   renderHomeView = () => {
     const {apiStatus} = this.state
@@ -142,12 +150,13 @@ class Home extends Component {
           const iconBgColor = isDarkTheme ? '#F4F4F4' : '#FFFFFF'
           return (
             <>
+              <Header />
+              <NavigationBar />
               <HomeBgContainer
                 data-testid="home"
                 color={color}
                 bgColor={bgColor}
               >
-                <Header />
                 <Banner closeBanner={this.closeBanner} display={display} />
                 <SearchInputContainer>
                   <InputField
@@ -156,7 +165,11 @@ class Home extends Component {
                     placeholder="Search"
                     value={searchInput}
                   />
-                  <SearchIcon iconBgColor={iconBgColor} type="button">
+                  <SearchIcon
+                    data-testid="searchButton"
+                    iconBgColor={iconBgColor}
+                    type="button"
+                  >
                     <AiOutlineSearch color="#616e7c" size="20" />
                   </SearchIcon>
                 </SearchInputContainer>

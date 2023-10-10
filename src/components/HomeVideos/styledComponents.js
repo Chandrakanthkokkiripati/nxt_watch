@@ -1,9 +1,22 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
+
+export const LinkElement = styled(Link)`
+  text-decoration: none;
+`
 
 export const VideoListItem = styled.li`
   width: 100%;
   margin-bottom: 30px;
   font-family: 'roboto';
+  @media screen and (min-width: 576px) and (max-width: 768px) {
+    width: 260px;
+    margin-right: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 280px;
+    margin-right: 20px;
+  }
 `
 
 export const VideoImage = styled.img`
@@ -19,10 +32,11 @@ export const ChannelImage = styled.img`
   height: 40px;
   margin-right: 10px;
 `
-export const Title = styled.h1`
+export const Title = styled.p`
   font-size: 15px;
   font-weight: 500;
   margin-top: 0;
+  color: ${props => props.color};
 `
 export const ChannelName = styled.p`
   font-size: 14px;
@@ -38,6 +52,9 @@ export const ChannelDescriptionContainer = styled.div`
 `
 export const ViewsAndDateContainer = styled.div`
   display: flex;
+  @media screen and (min-width: 576px) {
+    flex-direction: column;
+  }
 `
 
 export const ViewsAndDate = styled.p`

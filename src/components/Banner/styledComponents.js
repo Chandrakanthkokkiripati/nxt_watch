@@ -3,10 +3,12 @@ import styled from 'styled-components'
 export const BannerContainer = styled.div`
   display: ${props => props.display};
   flex-direction: column;
+  background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
+  background-size: cover;
   padding: 20px;
   font-family: 'roboto';
   background-color: #ffffff;
-  margin: 0;
+  margin-top: 0;
 `
 export const LogoImageContainer = styled.div`
   display: flex;
@@ -22,7 +24,7 @@ export const CrossIcon = styled.button`
   background-color: transparent;
   border: none;
 `
-export const BannerText = styled.h1`
+export const BannerText = styled.p`
   font-size: 20px;
   color: #1e293b;
   font-weight: normal;

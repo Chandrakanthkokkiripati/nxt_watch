@@ -33,7 +33,7 @@ const Header = props => {
   return (
     <ThemeAndVideoContext.Consumer>
       {value => {
-        const {isDarkTheme, toggleTheme} = value
+        const {isDarkTheme, toggleTheme, changeTab} = value
         const logoImage = isDarkTheme
           ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
           : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
@@ -43,7 +43,11 @@ const Header = props => {
         return (
           <HeaderContainer bgColor={bgColor} color={color}>
             <LogoLink to="/">
-              <LogoImage src={logoImage} alt="website logo" />
+              <LogoImage
+                onClick={() => changeTab('Home')}
+                src={logoImage}
+                alt="website logo"
+              />
             </LogoLink>
             <ActionsContainer>
               <ToggleIconButton

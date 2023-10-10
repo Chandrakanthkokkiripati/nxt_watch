@@ -19,7 +19,11 @@ const Banner = props => {
           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
           alt="nxt watch logo"
         />
-        <CrossIcon onClick={() => closeBanner()} type="button">
+        <CrossIcon
+          data-testid="close"
+          onClick={() => closeBanner()}
+          type="button"
+        >
           <MdClear />
         </CrossIcon>
       </LogoImageContainer>

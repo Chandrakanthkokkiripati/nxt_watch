@@ -1,4 +1,5 @@
 import {formatDistanceToNow} from 'date-fns'
+import ThemeAndVideoContext from '../context/ThemeAndVideoContext'
 
 import {
   VideoListItem,
@@ -10,6 +11,7 @@ import {
   ChannelName,
   ViewsAndDate,
   ViewsAndDateContainer,
+  LinkElement,
 } from './styledComponents'
 
 const HomeVideos = props => {
@@ -21,25 +23,36 @@ const HomeVideos = props => {
     title,
     viewCount,
     publishedAt,
+    id,
   } = video
   const time = formatDistanceToNow(new Date(publishedAt))
-  //   console.log(time)
+
   return (
-    <VideoListItem>
-      <VideoImage src={thumbnailUrl} alt="video thumbnail" />
-      <VideoDetailsContainer>
-        <ChannelImage src={profileImageUrl} alt="channel logo" />
-        <ChannelDescriptionContainer>
-          <Title>{title}</Title>
-          <ViewsAndDateContainer>
-            <ChannelName> {name}</ChannelName>
-            <ViewsAndDate>
-              &#8226; {viewCount} views &#8226; {time}
-            </ViewsAndDate>
-          </ViewsAndDateContainer>
-        </ChannelDescriptionContainer>
-      </VideoDetailsContainer>
-    </VideoListItem>
+    <ThemeAndVideoContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
+        return (
+          <LinkElement to={`/videos/${id}`}>
+            <VideoListItem>
+              <VideoImage src={thumbnailUrl} alt="video thumbnail" />
+              <VideoDetailsContainer>
+                <ChannelImage src={profileImageUrl} alt="channel logo" />
+                <ChannelDescriptionContainer>
+                  <Title color={textColor}>{title}</Title>
+                  <ViewsAndDateContainer>
+                    <ChannelName> {name}</ChannelName>
+                    <ViewsAndDate>
+                      &#8226; {viewCount} views &#8226; {time}
+                    </ViewsAndDate>
+                  </ViewsAndDateContainer>
+                </ChannelDescriptionContainer>
+              </VideoDetailsContainer>
+            </VideoListItem>
+          </LinkElement>
+        )
+      }}
+    </ThemeAndVideoContext.Consumer>
   )
 }
 

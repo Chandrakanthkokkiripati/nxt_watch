@@ -3,8 +3,12 @@ import styled from 'styled-components'
 export const HomeBgContainer = styled.div`
   background-color: ${props => props.bgColor};
   color: ${props => props.color};
-  margin-top: 0;
   min-height: 100vh;
+  margin-top: 50px;
+  padding-top: 10px;
+  @media screen and (min-width: 768px) {
+    margin-left: 250px;
+  }
 `
 export const SearchInputContainer = styled.div`
   border: 1px solid #64748b;
@@ -28,11 +32,17 @@ export const SearchIcon = styled.button`
   width: 50px;
 `
 export const HomeVideosListContainer = styled.ul`
+  width: 100%;
   list-style-type: none;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   padding-left: 0;
+  @media screen and (min-width: 577px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 20px;
+  }
 `
 export const NoVideosView = styled.div`
   display: flex;
@@ -69,4 +79,10 @@ export const RetryButton = styled.button`
   padding-bottom: 5px;
   font-family: 'Roboto';
   font-size: 15px;
+`
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
 `
